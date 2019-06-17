@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../redux/ui_actions';
-import { Form, Button, Switch, Row, Col, Table, Input, Icon, message, Divider, } from 'antd';
+import { Form, Button, Alert, Switch, Row, Col, Table, Input, Icon, message, Divider, } from 'antd';
 import { Wave } from 'react-preloading-component';
 
 // Components
@@ -117,8 +117,10 @@ class User extends Component {
                         onSubmit={ this.onFormSubmit } 
                         onChange={ uiActions.formUpdate }
                     >   
-                        <Icon type="user-add" className="form-icon" />
-
+                        <header>
+                            <h1>Особистий кабінет лікаря</h1>
+                            <Icon type="user-add" className="form-icon" />
+                        </header>
 
                         {/* { formData.map(inputs => typeDetector(inputs)) } */}
 
@@ -127,13 +129,32 @@ class User extends Component {
                         <Divider />
 
                         <h2>Робота</h2>
-                        <p>Виконувана робота з початку трудової діяльності (включаючи навчання у вищих і середніх навчальних закладах, військову службу участь в партизанських загонах і роботу за сумісництвом). При заповненні цього пункту установи, організації і підприємства необхідно іменувати так, як вони називалися у свій час, військову службу записувати з зазначенням посади.</p>
+                        <Alert 
+                            showIcon={ true }
+                            type="info"
+                            message="Виконувана робота з початку трудової діяльності (включаючи навчання у вищих і середніх навчальних закладах, військову службу участь в партизанських загонах і роботу за сумісництвом). При заповненні цього пункту установи, організації і підприємства необхідно іменувати так, як вони називалися у свій час, військову службу записувати з зазначенням посади." 
+                        />
+                        <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
                         <EducationTable />
                         <Divider />
 
                         <h2>Закордонний досвід</h2>
+                        <Alert 
+                            showIcon={ true }
+                            type="info"
+                            message="Перебування за кордоном (робота, службове відрядження тощо)." 
+                        />
+                        <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
                         <EducationTable />
                         <Divider />
+
+                        <Alert 
+                            showIcon={ true }
+                            type="info"
+                            message="Працівник, який заповнює особовий листок, повинен про всі наступні зміни повідомляти за місцем роботи для внесення відповідних даних у його особову картку." 
+                        />
+
+                        <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 
                         <FormItem>
                             <Button disabled={!isFormActivated} type="primary" htmlType="submit">

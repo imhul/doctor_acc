@@ -23,8 +23,127 @@ const testData = {
             "name": "middleName",
             "label": "по батькові",
             "value": "Василівна"
+        },
+        {
+            "key": 3,
+            "name": "birthday",
+            "label": "Рік, число і місяць народження",
+            "value": "12.09.1973"
+        },
+        {
+            "key": 4,
+            "name": "homeland",
+            "label": "Місце народженняі",
+            "value": "Тернопіль"
+        },
+        {
+            "key": 5,
+            "name": "lang",
+            "label": "Якими мовами володієте і якою мірою",
+            "value": "Українська - рідна"
+        },
+        {
+            "key": 6,
+            "name": "degree",
+            "label": "Учений ступінь, учене звання",
+            "value": "Доктор медичних наук"
+        },
+        {
+            "key": 7,
+            "name": "research",
+            "label": "Які маєте наукові праці і винаходи",
+            "value": "---"
+        },
+        {
+            "key": 8,
+            "name": "awards",
+            "label": "Які маєте державні нагороди",
+            "value": "---"
+        },
+        {
+            "key": 9,
+            "name": "military",
+            "label": "Відношення до військових обов’язків і військове звання",
+            "value": "---"
+        },
+        {
+            "key": 10,
+            "name": "middleName",
+            "label": "Склад",
+            "value": "---"
+        },
+        {
+            "key": 11,
+            "name": "troop",
+            "label": "Рід військ",
+            "value": "---"
+        },
+        {
+            "key": 12,
+            "name": "forces",
+            "label": "по батькові",
+            "value": "---"
+        },
+        {
+            "key": 13,
+            "name": "family",
+            "label": "Родинний стан на момент заповнення особового листка",
+            "value": "---"
+        },
+        {
+            "key": 14,
+            "name": "address",
+            "label": "по батькові",
+            "value": "Василівна"
+        },
+        {
+            "key": 15,
+            "name": "homePhone",
+            "label": "домашній телефон",
+            "value": "+380 63 442 25 37"
+        },
+        {
+            "key": 16,
+            "name": "homePhone",
+            "label": "домашній телефон",
+            "value": "+380 63 442 25 37"
+        },
+        {
+            "key": 17,
+            "name": "passSeries",
+            "label": "Паспорт: серія",
+            "value": "ВА"
+        },
+        {
+            "key": 18,
+            "name": "passNum",
+            "label": "номер",
+            "value": "456432"
+        },
+        {
+            "key": 19,
+            "name": "passIssued",
+            "label": "виданий",
+            "value": "---"
+        },
+        {
+            "key": 20,
+            "name": "day",
+            "label": "по батькові",
+            "value": "20"
+        },
+        {
+            "key": 2,
+            "name": "month",
+            "label": "по батькові",
+            "value": "06"
+        },
+        {
+            "key": 2,
+            "name": "year",
+            "label": "по батькові",
+            "value": "2019"
         }
-        
     ],
     "tables": [
         {
