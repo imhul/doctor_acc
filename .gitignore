@@ -1,0 +1,10 @@
+/node_modules
+/.git
+/.cache
+/dist
+/build
+/build/dev
+/build/production
+sitemap.xml
+robots.txt
+yarn.lock

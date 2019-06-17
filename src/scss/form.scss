@@ -1,0 +1,26 @@
+// Form
+.doctor-form {
+    border-radius: 4px;
+    padding: 25px;
+    width: 90%;
+    max-width: 1000px;
+    border: 1px solid #e8e8e8;
+
+    .ant-form-item-label {
+        line-height: 1.4;
+        white-space: normal;
+        text-align: left;
+    }
+    .editable-row {
+        .ant-form-explain {
+            position: absolute;
+            font-size: 12px;
+            margin-top: -4px;
+        }
+    }
+    .form-icon {
+        float: right;
+        font-size: 36px;
+        color: #1890ff;
+    }
+}
