@@ -9,6 +9,10 @@
     header {
         display: flex;
         justify-content: space-between;
+        .avatar {
+            width: 200px;
+            height: 250px;
+        }
     }
     .ant-form-item-label {
         line-height: 1.4;
@@ -23,7 +27,6 @@
         }
     }
     .form-icon {
-        float: right;
         font-size: 36px;
         color: #1890ff;
     }

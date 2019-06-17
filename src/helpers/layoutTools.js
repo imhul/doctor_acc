@@ -2,14 +2,9 @@ import React from 'react';
 
 // Components
 import { 
-    SwitchInput,
     DateInput,
     TextInput,
     TextareaInput,
-    NumberInput,
-    CheckboxInput,
-    RadioParent,
-    ParentTitle,
 
 } from '../components/User/Inputs';
 
@@ -39,24 +34,15 @@ export const formItemLayout = {
 };
 
 // Inputs initialization by types
-export const typeDetector = (inputData, isChild) => {
-    switch (inputData.Type) {
+export const typeDetector = inputData => {
+    console.info("typeDetector inputData: ", inputData);
+    switch (inputData.type) {
         case 'date':
-            return <DateInput isChild={isChild} inputData={inputData} key={inputData.Id} />;
+            return <DateInput inputData={inputData} key={inputData.key} />;
         case 'text':
-            return <TextInput isChild={isChild} inputData={inputData} key={inputData.Id} />;
+            return <TextInput inputData={inputData} key={inputData.key} />;
         case 'textarea':
-            return <TextareaInput isChild={isChild} inputData={inputData} key={inputData.Id} />;
-        case 'number':
-            return <NumberInput isChild={isChild} inputData={inputData} key={inputData.Id} />;
-        case 'switcher':
-            return <SwitchInput isChild={isChild} inputData={inputData} key={inputData.Id} />;
-        case 'checkbox':
-            return <CheckboxInput isChild={isChild} inputData={inputData} key={inputData.Id} />;
-        case 'parent-radio':
-            return <RadioParent isChild={isChild} inputData={inputData} key={inputData.Id} />;
-        case 'parent':
-            return <ParentTitle isChild={isChild} inputData={inputData} key={inputData.Id} />;
+            return <TextareaInput inputData={inputData} key={inputData.key} />;
         default:
             return null
     }

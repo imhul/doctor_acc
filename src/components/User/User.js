@@ -118,11 +118,12 @@ class User extends Component {
                         onChange={ uiActions.formUpdate }
                     >   
                         <header>
-                            <h1>Особистий кабінет лікаря</h1>
-                            <Icon type="user-add" className="form-icon" />
+                            <span>
+                                <h1><Icon type="user-add" className="form-icon" /> Особистий кабінет лікаря</h1>
+                                <h2>{ userData.name }</h2>
+                            </span>
+                            <img src={userData.avatar} alt={userData.name} className="avatar" />
                         </header>
-
-                        {/* { formData.map(inputs => typeDetector(inputs)) } */}
 
                         <h2>Освіта</h2>
                         <EducationTable />
@@ -153,6 +154,15 @@ class User extends Component {
                             type="info"
                             message="Працівник, який заповнює особовий листок, повинен про всі наступні зміни повідомляти за місцем роботи для внесення відповідних даних у його особову картку." 
                         />
+
+                        <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
+
+                        { 
+                            formData.map(inputs => {
+                                // console.info("inputs: ", inputs);
+                                return typeDetector(inputs)
+                            }) 
+                        }
 
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 
