@@ -23,4 +23,12 @@
         font-size: 36px;
         color: #1890ff;
     }
+    .add-row {
+        display: inline-block;
+        margin-bottom: 0;
+        span {
+            vertical-align: super;
+            margin-left: 10px;
+        }
+    }
 }

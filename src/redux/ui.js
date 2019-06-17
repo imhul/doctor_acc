@@ -113,12 +113,13 @@ export default (state = initState, action) => {
             };
 
         case type.DELETE_ROW:
-                state.tableData.filter(tables => tables.name === action.meta)
-                .map(table => {
-                    console.info("DELETE_ROW action.payload: ", action.payload);
-                    table.rows.filter( item => item.key === action.payload );
-                    return table.rows
-                });
+                const currentTable = state.tableData.filter(tables => tables.name === action.meta);
+                console.info("DELETE_ROW currentTable: ", currentTable[0]);
+                switch (currentTable[0].name) {
+                    case "education": state.educationTableData.rows = state.educationTableData.rows.filter( item => item.key !== action.payload );
+                    case "work": state.workTableData.rows = state.workTableData.rows.filter( item => item.key !== action.payload );
+                    case "oversea": state.overseaTableData.rows = state.overseaTableData.rows.filter( item => item.key !== action.payload );
+                };
                 return {
                     ...state,
                 };

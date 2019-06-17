@@ -42,7 +42,6 @@ const testData = {
                     "stopYear": "2004",
                     "lastCourse": 4,
                     "specialty": "doctor",
-                    "table": "education"
                 },
                 {
                     "key": "education row 2",
@@ -52,7 +51,6 @@ const testData = {
                     "stopYear": "2010",
                     "lastCourse": 3,
                     "specialty": "doctor",
-                    "table": "education"
                 }
             ]
         },
@@ -65,23 +63,17 @@ const testData = {
             "rows": [
                 {
                     "key": "work row 1",
-                    "name": "Edward King",
-                    "faculty": "London, Park Lane no. 0",
-                    "startYear": "2001",
-                    "stopYear": "2004",
-                    "lastCourse": 4,
-                    "specialty": "doctor",
-                    "table": "work"
+                    "startDate": "лют 2001",
+                    "stopDate": "сер 2006",
+                    "post": "Офтальмолог, лікарня ім. С.Бандери"  ,
+                    "geo": "Львів",
                 },
                 {
                     "key": "work row 2",
-                    "name": "King Edward",
-                    "faculty": "London, Park Lane no. 1",
-                    "startYear": "2007",
-                    "stopYear": "2010",
-                    "lastCourse": 3,
-                    "specialty": "doctor",
-                    "table": "work"
+                    "startDate": "бер 2007",
+                    "stopDate": "тра 2012",
+                    "post": "Офтальмолог, лікарня ім. Т.Шевченко"  ,
+                    "geo": "Хмельницьк",
                 }
             ]
         },
@@ -94,23 +86,17 @@ const testData = {
             "rows": [
                 {
                     "key": "oversea row 1",
-                    "name": "Edward King",
-                    "faculty": "London, Park Lane no. 0",
-                    "startYear": "2001",
-                    "stopYear": "2004",
-                    "lastCourse": 4,
-                    "specialty": "doctor",
-                    "table": "oversea"
+                    "startDate": "лют 2001",
+                    "stopDate": "сер 2002",
+                    "country": "USA",
+                    "target": "Навчання"
                 },
                 {
                     "key": "oversea row 2",
-                    "name": "King Edward",
-                    "faculty": "London, Park Lane no. 1",
-                    "startYear": "2007",
-                    "stopYear": "2010",
-                    "lastCourse": 3,
-                    "specialty": "doctor",
-                    "table": "oversea"
+                    "startDate": "бер 2007",
+                    "stopDate": "тра 2008",
+                    "country": "USA",
+                    "target": "Навчання"
                 }
             ]
         }

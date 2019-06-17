@@ -11,6 +11,7 @@ import { Table, Input, Icon, Divider, Button, Form } from 'antd';
 import { getId } from '../../../helpers';
 
 const { Column } = Table;
+const FormItem = Form.Item;
 
 class EducationTable extends Component {
 
@@ -56,17 +57,15 @@ class EducationTable extends Component {
     render() {
         const { educationTableData } = this.props.ui;
         const { uiActions } = this.props;
-        console.info("this.props: ", this.props);
+        // console.info("this.props: ", this.props);
         const EditableCell = (data) => (
-                <td>
-                    { console.info("EditableCell param: data", data) }
-                    { console.info("EditableCell param: data.children", data.children) }
+            <td>
+                {/* { console.info("EditableCell param: data", data) }
+                { console.info("EditableCell param: data.children[2]", data.children[2]) } */}
                 { 
-                    educationTableData.editing ? (
+                    educationTableData.editing && (data.children[2].type !== "span") ? (
                         <FormItem style={{ margin: 0 }}>
-                            {getFieldDecorator(dataIndex, {
-                                initialValue: record[dataIndex],
-                            })(<Input />)}
+                            <Input defaultValue={data.children[2]} />
                         </FormItem>
                     ) : data.children
                 }
@@ -81,6 +80,7 @@ class EducationTable extends Component {
         return (
             <div value={this.props.form}>
                 {/* {console.info("this.props.form: ", this.props.form)} */}
+                
                 <Table
                     components={components}
                     bordered
@@ -95,32 +95,28 @@ class EducationTable extends Component {
                     <Column title="Якщо не закінчена, то з якого курсу вибув" dataIndex="lastCourse" key="lastCourse" editable={true} />
                     <Column title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" dataIndex="specialty" key="specialty" editable={true} />
                     <Column
-                        title="Операціі"
+                        title="Дії"
                         dataIndex="operation"
                         key="operation"
                         editable={false}
+                        width={80}
                         render={(text, record) => {
 
                             return educationTableData.editing ? (
                                 <span>
-                                    {form => (
-                                        <Icon 
-                                            type="save" 
-                                            theme="twoTone" 
-                                            onClick={() => this.saveRow(form, record.key)}
-                                            style={{ marginRight: 8 }}
-                                            color="green"
-
-                                        />
-                                    )}
-
+                                    <Icon 
+                                        type="check-circle" 
+                                        theme="twoTone" 
+                                        onClick={() => this.saveRow(form, record.key)}
+                                        twoToneColor="#a0d911"
+                                    />
                                     <Divider type="vertical" />
-                                        <Icon 
-                                            type="stop" 
-                                            theme="twoTone" 
-                                            color="volcano"
-                                            onClick={() => uiActions.cancelRow(record.key, "education")}
-                                        />
+                                    <Icon 
+                                        type="close-circle" 
+                                        theme="twoTone" 
+                                        twoToneColor="#fa541c"
+                                        onClick={() => uiActions.cancelRow(record.key, "education")}
+                                    />
                                 </span>
                             ) : (
                                 <span>
@@ -144,13 +140,15 @@ class EducationTable extends Component {
                     />
 
                 </Table>
-                <Button
-                    onClick={this.addRow}
-                    type="primary"
-                    style={{ marginBottom: 25, marginTop: 15 }}
-                >
-                    Add a row
-                </Button>
+                <p className="add-row">
+                    <Icon 
+                        type="plus-circle" 
+                        theme="twoTone" 
+                        onClick={ this.addRow }
+                        style={{ marginBottom: 25, marginTop: 15, fontSize: 28 }}
+                    />
+                    <span>Додати рядок</span>
+                </p>
             </div>
         )
     }

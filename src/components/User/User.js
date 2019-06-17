@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../redux/ui_actions';
-import { Form, Button, Switch, Row, Col, Table, Input, Icon, message, } from 'antd';
+import { Form, Button, Switch, Row, Col, Table, Input, Icon, message, Divider, } from 'antd';
 import { Wave } from 'react-preloading-component';
 
 // Components
@@ -120,9 +120,20 @@ class User extends Component {
                         <Icon type="user-add" className="form-icon" />
 
 
-                        { formData.map(inputs => typeDetector(inputs)) }
+                        {/* { formData.map(inputs => typeDetector(inputs)) } */}
 
+                        <h2>Освіта</h2>
                         <EducationTable />
+                        <Divider />
+
+                        <h2>Робота</h2>
+                        <p>Виконувана робота з початку трудової діяльності (включаючи навчання у вищих і середніх навчальних закладах, військову службу участь в партизанських загонах і роботу за сумісництвом). При заповненні цього пункту установи, організації і підприємства необхідно іменувати так, як вони називалися у свій час, військову службу записувати з зазначенням посади.</p>
+                        <EducationTable />
+                        <Divider />
+
+                        <h2>Закордонний досвід</h2>
+                        <EducationTable />
+                        <Divider />
 
                         <FormItem>
                             <Button disabled={!isFormActivated} type="primary" htmlType="submit">
