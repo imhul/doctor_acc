@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 const TextareaInput = data => (
     <FormItem 
-        label={data.inputData.Title} 
+        label={data.inputData.label} 
         {...formItemLayout} 
     >
         <TextArea

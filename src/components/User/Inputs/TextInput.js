@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 
 const TextInput = data => (
     <FormItem 
-                label={data.inputData.Title} 
+                label={data.inputData.label} 
                 {...formItemLayout} 
             >
 

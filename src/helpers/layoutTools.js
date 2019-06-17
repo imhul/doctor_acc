@@ -16,8 +16,8 @@ export const buttonItemLayout = {
             offset: 0,
         },
         sm: {
-            span: 16,
-            offset: 8,
+            span: 12,
+            offset: 12,
         },
     },
 };
@@ -25,11 +25,11 @@ export const buttonItemLayout = {
 export const formItemLayout = {
     labelCol: {
         xs: { span: 24 },
-        sm: { span: 8 },
+        sm: { span: 12 },
     },
     wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 16 },
+        sm: { span: 12 },
     },
 };
 
