@@ -10,139 +10,155 @@ const testData = {
             "key": 0,
             "name": "lastName",
             "label": "Прізвище",
-            "value": "Ожоженко"
+            "value": "Ожоженко",
+            "type": "text"
         },
         {
             "key": 1,
             "name": "firstName",
             "label": "ім'я",
-            "value": "Галина"
+            "value": "Галина",
+            "type": "text"
         },
         {
             "key": 2,
             "name": "middleName",
             "label": "по батькові",
-            "value": "Василівна"
+            "value": "Василівна",
+            "type": "text"
         },
         {
             "key": 3,
             "name": "birthday",
             "label": "Рік, число і місяць народження",
-            "value": "12.09.1973"
+            "value": "12.09.1973",
+            "type": "text"
         },
         {
             "key": 4,
             "name": "homeland",
             "label": "Місце народженняі",
-            "value": "Тернопіль"
+            "value": "Тернопіль",
+            "type": "text"
         },
         {
             "key": 5,
             "name": "lang",
             "label": "Якими мовами володієте і якою мірою",
-            "value": "Українська - рідна"
+            "value": "Українська - рідна",
+            "type": "textarea"
         },
         {
             "key": 6,
             "name": "degree",
             "label": "Учений ступінь, учене звання",
-            "value": "Доктор медичних наук"
+            "value": "Доктор медичних наук",
+            "type": "textarea"
         },
         {
             "key": 7,
             "name": "research",
             "label": "Які маєте наукові праці і винаходи",
-            "value": "---"
+            "value": "---",
+            "type": "textarea"
         },
         {
             "key": 8,
             "name": "awards",
             "label": "Які маєте державні нагороди",
-            "value": "---"
+            "value": "---",
+            "type": "textarea"
         },
         {
             "key": 9,
             "name": "military",
             "label": "Відношення до військових обов’язків і військове звання",
-            "value": "---"
+            "value": "---",
+            "type": "textarea"
         },
         {
             "key": 10,
-            "name": "middleName",
+            "name": "troop",
             "label": "Склад",
-            "value": "---"
+            "value": "---",
+            "type": "text"
         },
         {
             "key": 11,
-            "name": "troop",
+            "name": "forces",
             "label": "Рід військ",
-            "value": "---"
+            "value": "---",
+            "type": "text"
         },
         {
             "key": 12,
-            "name": "forces",
-            "label": "по батькові",
-            "value": "---"
+            "name": "family",
+            "label": "Родинний стан на момент заповнення особового листка",
+            "value": "---",
+            "type": "text"
         },
         {
             "key": 13,
-            "name": "family",
-            "label": "Родинний стан на момент заповнення особового листка",
-            "value": "---"
+            "name": "address",
+            "label": "Домашня адреса",
+            "value": "---",
+            "type": "textarea"
         },
         {
             "key": 14,
-            "name": "address",
-            "label": "по батькові",
-            "value": "Василівна"
+            "name": "homePhone",
+            "label": "домашній телефон",
+            "value": "+380 63 442 25 37",
+            "type": "text"
         },
         {
             "key": 15,
-            "name": "homePhone",
-            "label": "домашній телефон",
-            "value": "+380 63 442 25 37"
+            "name": "workPhone",
+            "label": "робочий телефон",
+            "value": "+380 63 442 25 37",
+            "type": "text"
         },
         {
             "key": 16,
-            "name": "homePhone",
-            "label": "домашній телефон",
-            "value": "+380 63 442 25 37"
+            "name": "passSeries",
+            "label": "Паспорт: серія",
+            "value": "ВА",
+            "type": "text"
         },
         {
             "key": 17,
-            "name": "passSeries",
-            "label": "Паспорт: серія",
-            "value": "ВА"
+            "name": "passNum",
+            "label": "номер",
+            "value": "456432",
+            "type": "text"
         },
         {
             "key": 18,
-            "name": "passNum",
-            "label": "номер",
-            "value": "456432"
+            "name": "passIssued",
+            "label": "виданий",
+            "value": "---",
+            "type": "textarea"
         },
         {
             "key": 19,
-            "name": "passIssued",
-            "label": "виданий",
-            "value": "---"
+            "name": "day",
+            "label": "Поточний день",
+            "value": "20",
+            "type": "text"
         },
         {
             "key": 20,
-            "name": "day",
-            "label": "по батькові",
-            "value": "20"
-        },
-        {
-            "key": 2,
             "name": "month",
-            "label": "по батькові",
-            "value": "06"
+            "label": "місяць",
+            "value": "06",
+            "type": "text"
         },
         {
-            "key": 2,
+            "key": 21,
             "name": "year",
-            "label": "по батькові",
-            "value": "2019"
+            "label": "рік",
+            "value": "2019",
+            "type": "text"
         }
     ],
     "tables": [
