@@ -35,7 +35,7 @@ export const formItemLayout = {
 
 // Inputs initialization by types
 export const typeDetector = inputData => {
-    console.info("typeDetector inputData: ", inputData);
+    // console.info("typeDetector inputData: ", inputData);
     switch (inputData.type) {
         case 'date':
             return <DateInput inputData={inputData} key={inputData.key} />;

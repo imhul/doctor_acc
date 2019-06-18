@@ -13,7 +13,7 @@ const TextInput = data => (
             >
 
                 <Input
-                    id={data.inputData.key}
+                    id={`${data.inputData.key}`}
                     placeholder={data.inputData.placeholder}
                     value={data.inputData.value ? data.inputData.value : ""}
                     addonBefore={<Icon type="form" />}

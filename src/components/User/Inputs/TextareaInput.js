@@ -13,7 +13,7 @@ const TextareaInput = data => (
         {...formItemLayout} 
     >
         <TextArea
-            id={data.inputData.Id}
+            id={`${data.inputData.key}`}
             placeholder={data.inputData.placeholder}
             value={data.inputData.value ? data.inputData.value : ""}
         />

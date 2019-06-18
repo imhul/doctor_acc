@@ -53,7 +53,8 @@ class EducationTable extends Component {
         const { uiActions } = this.props;
 
         const EditableCell = (data) => (
-            <td>
+            <td className={data.children[1].props ? `${data.children[1].props.record.key}` :  "no-editable"}>
+                { console.info("data.children[1]: ", data.children[1]) }
                 { 
                     educationTableData.editing && (data.children[2].type !== "span") ? (
                         <FormItem style={{ margin: 0 }}>
@@ -80,12 +81,12 @@ class EducationTable extends Component {
                     rowClassName="editable-row"
                     pagination={false}
                 >
-                    <Column title="Найменування Навчального закладу" dataIndex="name" key="name" editable={true} />
-                    <Column title="Факультет або відділення" dataIndex="faculty" key="faculty" editable={true} />
-                    <Column title="Рік вступу" dataIndex="startYear" key="startYear" editable={true} />
-                    <Column title="Рік закінчення або вибуття" dataIndex="stopYear" key="stopYear" editable={true} />
-                    <Column title="Якщо не закінчена, то з якого курсу вибув" dataIndex="lastCourse" key="lastCourse" editable={true} />
-                    <Column title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" dataIndex="specialty" key="specialty" editable={true} />
+                    <Column dataIndex="name" key="name" editable={true} title="Найменування Навчального закладу" />
+                    <Column dataIndex="faculty" key="faculty" editable={true} title="Факультет або відділення" />
+                    <Column dataIndex="startYear" key="startYear" editable={true} title="Рік вступу" />
+                    <Column dataIndex="stopYear" key="stopYear" editable={true} title="Рік закінчення або вибуття" />
+                    <Column dataIndex="lastCourse" key="lastCourse" editable={true} title="Якщо не закінчена, то з якого курсу вибув" />
+                    <Column dataIndex="specialty" key="specialty" editable={true} title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
                     <Column
                         title="Дії"
                         dataIndex="operation"
@@ -93,8 +94,10 @@ class EducationTable extends Component {
                         editable={false}
                         width={80}
                         render={(text, record) => {
+    
+                            // console.info("Column render record", record);
 
-                            return educationTableData.editing ? (
+                            return educationTableData.editing && this.isEditing(record) ? (
                                 <span>
                                     <Icon 
                                         type="check-circle" 
@@ -127,7 +130,7 @@ class EducationTable extends Component {
                                         onClick={() => uiActions.deleteRow(record.key, "education")}
                                     />
                                 </span>
-                            );
+                            )
                         }}
                     />
 
