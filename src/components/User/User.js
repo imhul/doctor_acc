@@ -7,6 +7,7 @@ import { Wave } from 'react-preloading-component';
 
 // Components
 import EducationTable from './Tables/EducationTable';
+import Avatar from './Avatar';
 
 // Helpers
 import { 
@@ -130,7 +131,7 @@ class User extends Component {
                                         src={userData.avatar} 
                                         alt={userData.name} 
                                         className="avatar" 
-                                    /> : <Icon type="user" className="avatar" />
+                                    /> : <Avatar />
                                 }
                             </div>
                         </header>
