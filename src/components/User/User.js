@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../redux/ui_actions';
 import { Form, Button, Alert, Switch, Row, Col, Table, Input, Icon, message, Divider, } from 'antd';
 import { Wave } from 'react-preloading-component';
+import now from 'right-now';
 
 // Components
 import EducationTable from './Tables/EducationTable';
@@ -119,10 +120,20 @@ class User extends Component {
                     >   
                         <header>
                             <span>
-                                <h1><Icon type="user-add" className="form-icon" /> Особистий кабінет лікаря</h1>
+                                <h1>
+                                    <Icon type="user-add" className="form-icon" /> Особистий кабінет лікаря
+                                </h1>
                                 <h2>{ userData.name }</h2>
                             </span>
-                            <img src={userData.avatar} alt={userData.name} className="avatar" />
+                            <div className="img-wrapper">
+                                {
+                                    userData.avatar ? <img 
+                                        src={userData.avatar} 
+                                        alt={userData.name} 
+                                        className="avatar" 
+                                    /> : <Icon type="user" className="avatar" />
+                                }
+                            </div>
                         </header>
 
                         <h2>Освіта</h2>
@@ -157,12 +168,7 @@ class User extends Component {
 
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 
-                        { 
-                            formData.map(inputs => {
-                                // console.info("inputs: ", inputs);
-                                return typeDetector(inputs)
-                            }) 
-                        }
+                        { formData.map(inputs => typeDetector(inputs)) }
 
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 

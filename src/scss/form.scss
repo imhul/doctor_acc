@@ -9,9 +9,20 @@
     header {
         display: flex;
         justify-content: space-between;
-        .avatar {
+        .img-wrapper {
             width: 200px;
             height: 250px;
+            border-radius: 4px;
+            border: 1px solid #e8e8e8;
+            .avatar {
+                width: 200px;
+                height: auto;
+                font-size: 200px;
+                color: rgba(24, 144, 255, 0.1);
+                &.anticon {
+                    margin-top: 20px;
+                }
+            }
         }
     }
     .ant-form-item-label {

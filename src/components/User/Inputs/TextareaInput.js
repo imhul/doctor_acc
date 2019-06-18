@@ -14,8 +14,8 @@ const TextareaInput = data => (
     >
         <TextArea
             id={data.inputData.Id}
-            placeholder={data.inputData.Placeholder}
-            value={data.inputData.Value ? data.inputData.Value : ""}
+            placeholder={data.inputData.placeholder}
+            value={data.inputData.value ? data.inputData.value : ""}
         />
     </FormItem>
 );

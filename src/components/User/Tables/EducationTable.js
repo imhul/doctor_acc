@@ -4,12 +4,6 @@ import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
 import { Table, Input, Icon, Divider, Button, Form } from 'antd';
 
-// Components
-// import EditableCell from './EditableCell';
-
-// Helpers
-import { getId } from '../../../helpers';
-
 const { Column } = Table;
 const FormItem = Form.Item;
 
@@ -57,11 +51,9 @@ class EducationTable extends Component {
     render() {
         const { educationTableData } = this.props.ui;
         const { uiActions } = this.props;
-        // console.info("this.props: ", this.props);
+
         const EditableCell = (data) => (
             <td>
-                {/* { console.info("EditableCell param: data", data) }
-                { console.info("EditableCell param: data.children[2]", data.children[2]) } */}
                 { 
                     educationTableData.editing && (data.children[2].type !== "span") ? (
                         <FormItem style={{ margin: 0 }}>

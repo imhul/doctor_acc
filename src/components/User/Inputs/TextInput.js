@@ -13,10 +13,9 @@ const TextInput = data => (
             >
 
                 <Input
-                    id={data.inputData.Id}
-                    placeholder={data.inputData.Placeholder}
-                    addonAfter={data.inputData.TextAfter}
-                    value={data.inputData.Value ? data.inputData.Value : ""}
+                    id={data.inputData.key}
+                    placeholder={data.inputData.placeholder}
+                    value={data.inputData.value ? data.inputData.value : ""}
                     addonBefore={<Icon type="form" />}
                 />
 

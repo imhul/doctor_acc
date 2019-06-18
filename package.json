@@ -30,7 +30,8 @@
     "react-preloading-component": "^0.0.5",
     "react-redux": "^7.0.2",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "right-now": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

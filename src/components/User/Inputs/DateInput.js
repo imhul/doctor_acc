@@ -30,10 +30,7 @@ class DateInput extends PureComponent {
         );
 
         return (
-            <FormItem 
-                label={inputData.label} {...formItemLayout}
-                className="parent"
-            >
+            <FormItem label={inputData.label} {...formItemLayout}>
                 <DateInputChild />
             </FormItem>
         )
