@@ -51,47 +51,71 @@ class EducationTable extends Component {
     render() {
         const { educationTableData } = this.props.ui;
         const { uiActions } = this.props;
-
-        const EditableCell = (data) => {
-
-            return (
-                <td className={data.children[1].props ? `${data.children[1].props.record.key}` :  "no-editable"}>
-                    { console.info("data.children[1].props.record.key: ", data.children[1].props ? `${data.children[1].props.record.key}` : null) }
-                    
-                    { 
-                        ( data.children[1].props ? this.isEditing(data.children[1].props.record) : false ) 
-                        && educationTableData.editing ? (
-                            <FormItem style={{ margin: 0 }}>
-                                <Input defaultValue={data.children[2]} />
-                            </FormItem>
-                        ) : data.children
-                    }
-                </td>
-            )
-        };
-        const components = {
-            body: {
-                cell: EditableCell,
-            },
-        };
       
         return (
             <div value={this.props.form}>
                 {console.info("this.props.form: ", this.props.form)}
                 
                 <Table
-                    components={components}
                     bordered
                     dataSource={educationTableData.rows}
                     rowClassName="editable-row"
                     pagination={false}
                 >
-                    <Column dataIndex="name" key="name" editable={true} title="Найменування Навчального закладу" />
-                    <Column dataIndex="faculty" key="faculty" editable={true} title="Факультет або відділення" />
-                    <Column dataIndex="startYear" key="startYear" editable={true} title="Рік вступу" />
-                    <Column dataIndex="stopYear" key="stopYear" editable={true} title="Рік закінчення або вибуття" />
-                    <Column dataIndex="lastCourse" key="lastCourse" editable={true} title="Якщо не закінчена, то з якого курсу вибув" />
-                    <Column dataIndex="specialty" key="specialty" editable={true} title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
+                    <Column dataIndex="name" key="name" editable={true} 
+                        render={(text, record) => {
+                            return educationTableData.editing && this.isEditing(record) ? (
+                                <FormItem style={{ margin: 0 }}>
+                                    <Input defaultValue={text} />
+                                </FormItem>
+                            ) : text
+                        }}
+                        title="Найменування Навчального закладу" />
+                    <Column dataIndex="faculty" key="faculty" editable={true} 
+                        render={(text, record) => {
+                            return educationTableData.editing && this.isEditing(record) ? (
+                                <FormItem style={{ margin: 0 }}>
+                                    <Input defaultValue={text} />
+                                </FormItem>
+                            ) : text
+                        }}
+                        title="Факультет або відділення" />
+                    <Column dataIndex="startYear" key="startYear" editable={true}
+                        render={(text, record) => {
+                            return educationTableData.editing && this.isEditing(record) ? (
+                                <FormItem style={{ margin: 0 }}>
+                                    <Input defaultValue={text} />
+                                </FormItem>
+                            ) : text
+                        }}
+                        title="Рік вступу" />
+                    <Column dataIndex="stopYear" key="stopYear" editable={true} 
+                        render={(text, record) => {
+                            return educationTableData.editing && this.isEditing(record) ? (
+                                <FormItem style={{ margin: 0 }}>
+                                    <Input defaultValue={text} />
+                                </FormItem>
+                            ) : text
+                        }}
+                        title="Рік закінчення або вибуття" />
+                    <Column dataIndex="lastCourse" key="lastCourse" editable={true} 
+                        render={(text, record) => {
+                            return educationTableData.editing && this.isEditing(record) ? (
+                                <FormItem style={{ margin: 0 }}>
+                                    <Input defaultValue={text} />
+                                </FormItem>
+                            ) : text
+                        }}
+                        title="Якщо не закінчена, то з якого курсу вибув" />
+                    <Column dataIndex="specialty" key="specialty" editable={true} 
+                        render={(text, record) => {
+                            return educationTableData.editing && this.isEditing(record) ? (
+                                <FormItem style={{ margin: 0 }}>
+                                    <Input defaultValue={text} />
+                                </FormItem>
+                            ) : text
+                        }}
+                        title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
                     <Column
                         title="Дії"
                         dataIndex="operation"
