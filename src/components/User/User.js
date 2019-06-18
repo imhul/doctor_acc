@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../redux/ui_actions';
 import { Form, Button, Alert, Switch, Row, Col, Table, Input, Icon, message, Divider, } from 'antd';
 import { Wave } from 'react-preloading-component';
-import now from 'right-now';
 
 // Components
 import EducationTable from './Tables/EducationTable';
