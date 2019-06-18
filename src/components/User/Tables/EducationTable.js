@@ -52,18 +52,23 @@ class EducationTable extends Component {
         const { educationTableData } = this.props.ui;
         const { uiActions } = this.props;
 
-        const EditableCell = (data) => (
-            <td className={data.children[1].props ? `${data.children[1].props.record.key}` :  "no-editable"}>
-                { console.info("data.children[1]: ", data.children[1]) }
-                { 
-                    educationTableData.editing && (data.children[2].type !== "span") ? (
-                        <FormItem style={{ margin: 0 }}>
-                            <Input defaultValue={data.children[2]} />
-                        </FormItem>
-                    ) : data.children
-                }
-            </td>
-        );
+        const EditableCell = (data) => {
+
+            return (
+                <td className={data.children[1].props ? `${data.children[1].props.record.key}` :  "no-editable"}>
+                    { console.info("data.children[1].props.record.key: ", data.children[1].props ? `${data.children[1].props.record.key}` : null) }
+                    
+                    { 
+                        ( data.children[1].props ? this.isEditing(data.children[1].props.record) : false ) 
+                        && educationTableData.editing ? (
+                            <FormItem style={{ margin: 0 }}>
+                                <Input defaultValue={data.children[2]} />
+                            </FormItem>
+                        ) : data.children
+                    }
+                </td>
+            )
+        };
         const components = {
             body: {
                 cell: EditableCell,
@@ -72,7 +77,7 @@ class EducationTable extends Component {
       
         return (
             <div value={this.props.form}>
-                {/* {console.info("this.props.form: ", this.props.form)} */}
+                {console.info("this.props.form: ", this.props.form)}
                 
                 <Table
                     components={components}
