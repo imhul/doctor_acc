@@ -244,6 +244,7 @@ const testData = {
             "editing": false,
             "rows": [
                 {
+                    "id": 101,
                     "key": "education row 1",
                     "name": "Edward King",
                     "faculty": "London, Park Lane no. 0",
@@ -253,6 +254,7 @@ const testData = {
                     "specialty": "doctor",
                 },
                 {
+                    "id": 102,
                     "key": "education row 2",
                     "name": "King Edward",
                     "faculty": "London, Park Lane no. 1",
@@ -271,6 +273,7 @@ const testData = {
             "editing": false,
             "rows": [
                 {
+                    "id": 201,
                     "key": "work row 1",
                     "startDate": "лют 2001",
                     "stopDate": "сер 2006",
@@ -278,6 +281,7 @@ const testData = {
                     "geo": "Львів",
                 },
                 {
+                    "id": 202,
                     "key": "work row 2",
                     "startDate": "бер 2007",
                     "stopDate": "тра 2012",
@@ -294,6 +298,7 @@ const testData = {
             "editing": false,
             "rows": [
                 {
+                    "id": 301,
                     "key": "oversea row 1",
                     "startDate": "лют 2001",
                     "stopDate": "сер 2002",
@@ -301,6 +306,7 @@ const testData = {
                     "target": "Навчання"
                 },
                 {
+                    "id": 302,
                     "key": "oversea row 2",
                     "startDate": "бер 2007",
                     "stopDate": "тра 2008",

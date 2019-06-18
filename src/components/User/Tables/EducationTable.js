@@ -33,16 +33,22 @@ class EducationTable extends Component {
                 return;
             }
             const newData = [...ui.educationTableData.rows];
-            const index = newData.findIndex(item => key === item.key);
+            const index = newData.
+                findIndex(item => +`${key}`.split('').pop() === +`${item.key}`.split('').pop()
+            );
+            console.info("saveRow index: ", index);
+            
             if (index > -1) {
                 const item = newData[index];
                 newData.splice(index, 1, {
                     ...item,
                     ...row,
                 });
+                console.info("newData: ", newData);
                 uiActions.saveRow(newData, "education")
             } else {
                 newData.push(row);
+                console.info("newData push(row): ", newData);
                 uiActions.saveRow(newData, "education")
             }
         })
@@ -54,7 +60,7 @@ class EducationTable extends Component {
       
         return (
             <div value={this.props.form}>
-                {console.info("this.props.form: ", this.props.form)}
+                {/* {console.info("this.props.form: ", this.props.form)} */}
                 
                 <Table
                     bordered
@@ -131,7 +137,7 @@ class EducationTable extends Component {
                                     <Icon 
                                         type="check-circle" 
                                         theme="twoTone" 
-                                        onClick={() => this.saveRow(form, record.key)}
+                                        onClick={() => this.saveRow(this.props.form, record.key)}
                                         twoToneColor="#a0d911"
                                     />
                                     <Divider type="vertical" />
