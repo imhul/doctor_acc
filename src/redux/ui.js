@@ -162,22 +162,11 @@ export default (state = initState, action) => {
             };
 
         case type.SAVE_ROW:
-            console.info("SAVE_ROW currentTable: ", currentTable);
-            console.info("SAVE_ROW action.payload: ", action.payload);
-            // switch (currentTable.name) {
-            //     case "education": 
-            //         state.educationTableData.rows.map(item => item.value = action.payload.value);
-            //     case "work": 
-            //         state.workTableData.rows.map(item => item.value = action.payload.value);
-            //     case "oversea": 
-            //         state.overseaTableData.rows.map(item => item.value = action.payload.value);
-            // };
-
-            // .map(item => {
-            //     item.editingKey = "";
-            //     item.editing = false;
-            //     item.rows = action.payload
-            // });
+                state.tableData.filter(items => items.name === action.meta)
+                .map(item => {
+                    item.editingKey = "";
+                    item.editing = false;
+                });
             return {
                 ...state,
             };

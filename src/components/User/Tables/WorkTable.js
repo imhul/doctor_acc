@@ -7,14 +7,14 @@ import { Table, Input, Icon, Divider, Form } from 'antd';
 const { Column } = Table;
 const FormItem = Form.Item;
 
-class EducationFormTable extends Component {
+class WorkFormTable extends Component {
 
-    isEditing = record => record.key === this.props.ui.educationTableData.editingKey;
+    isEditing = record => record.key === this.props.ui.workTableData.editingKey;
 
     addRow = () => {
         const { ui, uiActions } = this.props;
         const newData = {
-            key: `${ui.educationTableData.name} row ${ui.educationTableData.count + 1}`,
+            key: `${ui.workTableData.name} row ${ui.workTableData.count + 1}`,
             name: "",
             faculty: "",
             startYear: "",
@@ -22,14 +22,14 @@ class EducationFormTable extends Component {
             lastCourse: "",
             specialty: "",
         };
-        uiActions.addRow([...ui.educationTableData.rows, newData], "education")
+        uiActions.addRow([...ui.workTableData.rows, newData], "work")
     };
 
     render() {
-        const { educationTableData } = this.props.ui;
+        const { workTableData } = this.props.ui;
         const { uiActions } = this.props;
         const renderColumn = (text, record, name) => {
-            return educationTableData.editing && this.isEditing(record) ? (
+            return workTableData.editing && this.isEditing(record) ? (
                 <FormItem style={{ margin: 0 }}>
                     <Input
                         id={record.key}
@@ -44,7 +44,7 @@ class EducationFormTable extends Component {
         return (
             <Table
                 bordered
-                dataSource={educationTableData.rows}
+                dataSource={workTableData.rows}
                 rowClassName="editable-row"
                 pagination={false}
                 footer={() => (
@@ -101,12 +101,12 @@ class EducationFormTable extends Component {
                     editable={false}
                     width={80}
                     render={(unusable, rows) => {
-                        return educationTableData.editing && this.isEditing(rows) ? (
+                        return workTableData.editing && this.isEditing(rows) ? (
                             <span>
                                 <Icon
                                     type="check-circle"
                                     theme="twoTone"
-                                    onClick={() => uiActions.saveRow(rows.key, "education")}
+                                    onClick={() => uiActions.saveRow(rows.key, "work")}
                                     twoToneColor="#a0d911"
                                 />
                                 <Divider type="vertical" />
@@ -114,7 +114,7 @@ class EducationFormTable extends Component {
                                     type="close-circle"
                                     theme="twoTone"
                                     twoToneColor="#fa541c"
-                                    onClick={() => uiActions.cancelRow(rows.key, "education")}
+                                    onClick={() => uiActions.cancelRow(rows.key, "work")}
                                 />
                             </span>
                         ) : (
@@ -122,16 +122,16 @@ class EducationFormTable extends Component {
                                 <Icon
                                     type="edit"
                                     theme="twoTone"
-                                    disabled={educationTableData.editingKey !== ""}
-                                    onClick={() => uiActions.editRow(rows.key, "education")}
+                                    disabled={workTableData.editingKey !== ""}
+                                    onClick={() => uiActions.editRow(rows.key, "work")}
                                 />
                                 <Divider type="vertical" />
                                 <Icon
                                     type="delete"
                                     theme="twoTone"
                                     twoToneColor="#ff1744"
-                                    disabled={educationTableData.editingKey !== ""}
-                                    onClick={() => uiActions.deleteRow(rows.key, "education")}
+                                    disabled={workTableData.editingKey !== ""}
+                                    onClick={() => uiActions.deleteRow(rows.key, "work")}
                                 />
                             </span>
                         )
@@ -142,7 +142,7 @@ class EducationFormTable extends Component {
     }
 };
 
-const EducationTable = Form.create()(EducationFormTable);
+const WorkTable = Form.create()(WorkFormTable);
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -156,4 +156,4 @@ function mapStateToProps(state) {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EducationTable);
+export default connect(mapStateToProps, mapDispatchToProps)(WorkTable);

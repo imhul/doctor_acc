@@ -28,9 +28,14 @@
     }
     .ant-table-footer {
         text-align: right;
+        padding: 0;
+        &:hover {
+            background-color: #e6f7ff;
+        }
         .add-row {
-            display: inline-block;
+            padding: 15px;
             margin-bottom: 0;
+            cursor: pointer;
             span {
                 vertical-align: super;
                 margin-right: 10px;

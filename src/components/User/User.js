@@ -7,6 +7,8 @@ import { Wave } from 'react-preloading-component';
 
 // Components
 import EducationTable from './Tables/EducationTable';
+import WorkTable from './Tables/WorkTable';
+import OverseaTable from './Tables/OverseaTable';
 import Avatar from './Avatar';
 
 // Helpers
@@ -147,7 +149,7 @@ class User extends Component {
                             message="Виконувана робота з початку трудової діяльності (включаючи навчання у вищих і середніх навчальних закладах, військову службу участь в партизанських загонах і роботу за сумісництвом). При заповненні цього пункту установи, організації і підприємства необхідно іменувати так, як вони називалися у свій час, військову службу записувати з зазначенням посади." 
                         />
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
-                        {/* <EducationTable /> */}
+                        <WorkTable />
                         <Divider />
 
                         <h2>Закордонний досвід</h2>
@@ -157,7 +159,7 @@ class User extends Component {
                             message="Перебування за кордоном (робота, службове відрядження тощо)." 
                         />
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
-                        {/* <EducationTable /> */}
+                        <OverseaTable />
                         <Divider />
 
                         <Alert 
