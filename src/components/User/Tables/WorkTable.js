@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
 import { Table, Input, Icon, Divider, Form } from 'antd';
 
-const { Column } = Table;
+const { Column, ColumnGroup } = Table;
 const FormItem = Form.Item;
 
 class WorkFormTable extends Component {
@@ -14,13 +14,12 @@ class WorkFormTable extends Component {
     addRow = () => {
         const { ui, uiActions } = this.props;
         const newData = {
+            id: +`20${ui.workTableData.count + 1}`,
             key: `${ui.workTableData.name} row ${ui.workTableData.count + 1}`,
-            name: "",
-            faculty: "",
-            startYear: "",
-            stopYear: "",
-            lastCourse: "",
-            specialty: "",
+            startDate: "",
+            stopDate: "",
+            post: "",
+            geo: "",
         };
         uiActions.addRow([...ui.workTableData.rows, newData], "work")
     };
@@ -58,42 +57,32 @@ class WorkFormTable extends Component {
                     </div>
                 )}
             >
+                <ColumnGroup title="Місяць і рік">
+                    <Column 
+                        dataIndex="startDate" 
+                        key="startDate" 
+                        editable={true}
+                        render={(text, record) => renderColumn(text, record, "startDate")}
+                        title="вступ" />
+                    <Column 
+                        dataIndex="stopDate" 
+                        key="stopDate" 
+                        editable={true}
+                        render={(text, record) => renderColumn(text, record, "stopDate")}
+                        title="Звільнення" />
+                </ColumnGroup>
                 <Column 
-                    dataIndex="name" 
-                    key="name" 
+                    dataIndex="post" 
+                    key="post" 
                     editable={true}
-                    render={(text, record) => renderColumn(text, record, "name")}
-                    title="Найменування Навчального закладу" />
+                    render={(text, record) => renderColumn(text, record, "post")}
+                    title="Посади із зазначенням підприємства, установи, організації" />
                 <Column 
-                    dataIndex="faculty" 
-                    key="faculty" 
+                    dataIndex="geo" 
+                    key="geo" 
                     editable={true}
-                    render={(text, record) => renderColumn(text, record, "faculty")}
-                    title="Факультет або відділення" />
-                <Column 
-                    dataIndex="startYear" 
-                    key="startYear" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "startYear")}
-                    title="Рік вступу" />
-                <Column 
-                    dataIndex="stopYear" 
-                    key="stopYear" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "stopYear")}
+                    render={(text, record) => renderColumn(text, record, "geo")}
                     title="Рік закінчення або вибуття" />
-                <Column 
-                    dataIndex="lastCourse" 
-                    key="lastCourse" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "lastCourse")}
-                    title="Якщо не закінчена, то з якого курсу вибув" />
-                <Column 
-                    dataIndex="specialty" 
-                    key="specialty" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "specialty")}
-                    title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
                 <Column
                     title="Дії"
                     dataIndex="operation"

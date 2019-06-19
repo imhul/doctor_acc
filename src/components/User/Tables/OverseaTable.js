@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
 import { Table, Input, Icon, Divider, Form } from 'antd';
 
-const { Column } = Table;
+const { Column, ColumnGroup } = Table;
 const FormItem = Form.Item;
 
 class OverseaFormTable extends Component {
@@ -14,13 +14,12 @@ class OverseaFormTable extends Component {
     addRow = () => {
         const { ui, uiActions } = this.props;
         const newData = {
+            id: +`30${ui.overseaTableData.count + 1}`,
             key: `${ui.overseaTableData.name} row ${ui.overseaTableData.count + 1}`,
-            name: "",
-            faculty: "",
-            startYear: "",
-            stopYear: "",
-            lastCourse: "",
-            specialty: "",
+            startDate: "",
+            stopDate: "",
+            country: "",
+            target: "",
         };
         uiActions.addRow([...ui.overseaTableData.rows, newData], "oversea")
     };
@@ -58,42 +57,32 @@ class OverseaFormTable extends Component {
                     </div>
                 )}
             >
+                <ColumnGroup title="Місяць і рік">
+                    <Column 
+                        dataIndex="startDate" 
+                        key="startDate" 
+                        editable={true}
+                        render={(text, record) => renderColumn(text, record, "startDate")}
+                        title="З якого часу" />
+                    <Column 
+                        dataIndex="stopDate" 
+                        key="stopDate" 
+                        editable={true}
+                        render={(text, record) => renderColumn(text, record, "stopDate")}
+                        title="По який час" />
+                </ColumnGroup>
                 <Column 
-                    dataIndex="name" 
-                    key="name" 
+                    dataIndex="country" 
+                    key="country" 
                     editable={true}
-                    render={(text, record) => renderColumn(text, record, "name")}
-                    title="Найменування Навчального закладу" />
+                    render={(text, record) => renderColumn(text, record, "country")}
+                    title="В якій країні" />
                 <Column 
-                    dataIndex="faculty" 
-                    key="faculty" 
+                    dataIndex="target" 
+                    key="target" 
                     editable={true}
-                    render={(text, record) => renderColumn(text, record, "faculty")}
-                    title="Факультет або відділення" />
-                <Column 
-                    dataIndex="startYear" 
-                    key="startYear" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "startYear")}
-                    title="Рік вступу" />
-                <Column 
-                    dataIndex="stopYear" 
-                    key="stopYear" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "stopYear")}
-                    title="Рік закінчення або вибуття" />
-                <Column 
-                    dataIndex="lastCourse" 
-                    key="lastCourse" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "lastCourse")}
-                    title="Якщо не закінчена, то з якого курсу вибув" />
-                <Column 
-                    dataIndex="specialty" 
-                    key="specialty" 
-                    editable={true}
-                    render={(text, record) => renderColumn(text, record, "specialty")}
-                    title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
+                    render={(text, record) => renderColumn(text, record, "target")}
+                    title="Мета перебування за кордоном" />
                 <Column
                     title="Дії"
                     dataIndex="operation"

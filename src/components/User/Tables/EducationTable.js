@@ -14,6 +14,7 @@ class EducationFormTable extends Component {
     addRow = () => {
         const { ui, uiActions } = this.props;
         const newData = {
+            id: +`10${ui.educationTableData.count + 1}`,
             key: `${ui.educationTableData.name} row ${ui.educationTableData.count + 1}`,
             name: "",
             faculty: "",
