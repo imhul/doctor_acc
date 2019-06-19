@@ -7,7 +7,7 @@ import { Table, Input, Icon, Divider, Button, Form } from 'antd';
 const { Column } = Table;
 const FormItem = Form.Item;
 
-class EducationTable extends Component {
+class EducationFormTable extends Component {
 
     isEditing = record => record.key === this.props.ui.educationTableData.editingKey;
 
@@ -28,133 +28,116 @@ class EducationTable extends Component {
 
     saveRow(form, key) {
         const { ui, uiActions } = this.props;
-        form.validateFields((error, row) => {
-            if (error) {
-                return;
-            }
-            const newData = [...ui.educationTableData.rows];
-            const index = newData.
-                findIndex(item => +`${key}`.split('').pop() === +`${item.key}`.split('').pop()
-            );
-            console.info("saveRow index: ", index);
-            
-            if (index > -1) {
-                const item = newData[index];
-                newData.splice(index, 1, {
-                    ...item,
-                    ...row,
-                });
-                console.info("newData: ", newData);
-                uiActions.saveRow(newData, "education")
-            } else {
-                newData.push(row);
-                console.info("newData push(row): ", newData);
-                uiActions.saveRow(newData, "education")
-            }
-        })
+
+        console.info("saveRow key: ", key);
+        const currentRow = ui.educationTableData.rows.filter(item => item.key === key)
+
+        console.info("saveRow currentRow: ", currentRow);
     };
 
     render() {
         const { educationTableData } = this.props.ui;
         const { uiActions } = this.props;
-      
-        return (
-            <div value={this.props.form}>
-                {/* {console.info("this.props.form: ", this.props.form)} */}
-                
-                <Table
-                    bordered
-                    dataSource={educationTableData.rows}
-                    rowClassName="editable-row"
-                    pagination={false}
-                >
-                    <Column dataIndex="name" key="name" editable={true} 
-                        render={(text, record) => {
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <FormItem style={{ margin: 0 }}>
-                                    <Input defaultValue={text} />
-                                </FormItem>
-                            ) : text
-                        }}
-                        title="Найменування Навчального закладу" />
-                    <Column dataIndex="faculty" key="faculty" editable={true} 
-                        render={(text, record) => {
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <FormItem style={{ margin: 0 }}>
-                                    <Input defaultValue={text} />
-                                </FormItem>
-                            ) : text
-                        }}
-                        title="Факультет або відділення" />
-                    <Column dataIndex="startYear" key="startYear" editable={true}
-                        render={(text, record) => {
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <FormItem style={{ margin: 0 }}>
-                                    <Input defaultValue={text} />
-                                </FormItem>
-                            ) : text
-                        }}
-                        title="Рік вступу" />
-                    <Column dataIndex="stopYear" key="stopYear" editable={true} 
-                        render={(text, record) => {
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <FormItem style={{ margin: 0 }}>
-                                    <Input defaultValue={text} />
-                                </FormItem>
-                            ) : text
-                        }}
-                        title="Рік закінчення або вибуття" />
-                    <Column dataIndex="lastCourse" key="lastCourse" editable={true} 
-                        render={(text, record) => {
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <FormItem style={{ margin: 0 }}>
-                                    <Input defaultValue={text} />
-                                </FormItem>
-                            ) : text
-                        }}
-                        title="Якщо не закінчена, то з якого курсу вибув" />
-                    <Column dataIndex="specialty" key="specialty" editable={true} 
-                        render={(text, record) => {
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <FormItem style={{ margin: 0 }}>
-                                    <Input defaultValue={text} />
-                                </FormItem>
-                            ) : text
-                        }}
-                        title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
-                    <Column
-                        title="Дії"
-                        dataIndex="operation"
-                        key="operation"
-                        editable={false}
-                        width={80}
-                        render={(text, record) => {
-    
-                            // console.info("Column render record", record);
+        const renderColumn = (text, record, name) => {
+            return educationTableData.editing && this.isEditing(record) ? (
+                <FormItem style={{ margin: 0 }}>
+                    <Input
+                        id={record.key}
+                        key={record.key}
+                        name={name}
+                        defaultValue={text}
+                    />
+                </FormItem>
+            ) : text
+        };
 
-                            return educationTableData.editing && this.isEditing(record) ? (
-                                <span>
-                                    <Icon 
-                                        type="check-circle" 
-                                        theme="twoTone" 
-                                        onClick={() => this.saveRow(this.props.form, record.key)}
-                                        twoToneColor="#a0d911"
-                                    />
-                                    <Divider type="vertical" />
-                                    <Icon 
-                                        type="close-circle" 
-                                        theme="twoTone" 
-                                        twoToneColor="#fa541c"
-                                        onClick={() => uiActions.cancelRow(record.key, "education")}
-                                    />
-                                </span>
-                            ) : (
+        return (
+            <Table
+                bordered
+                dataSource={educationTableData.rows}
+                rowClassName="editable-row"
+                pagination={false}
+                footer={() => (
+                    <p className="add-row">
+                        <span>Додати рядок </span>
+                        <Icon
+                            type="plus-circle"
+                            theme="twoTone"
+                            onClick={this.addRow}
+                            style={{ margin: 0, fontSize: 28 }}
+                        />
+                    </p>
+                )}
+            >
+                <Column 
+                    dataIndex="name" 
+                    key="name" 
+                    editable={true}
+                    render={(text, record) => renderColumn(text, record, "name")}
+                    title="Найменування Навчального закладу" />
+                <Column 
+                    dataIndex="faculty" 
+                    key="faculty" 
+                    editable={true}
+                    render={(text, record) => renderColumn(text, record, "faculty")}
+                    title="Факультет або відділення" />
+                <Column 
+                    dataIndex="startYear" 
+                    key="startYear" 
+                    editable={true}
+                    render={(text, record) => renderColumn(text, record, "startYear")}
+                    title="Рік вступу" />
+                <Column 
+                    dataIndex="stopYear" 
+                    key="stopYear" 
+                    editable={true}
+                    render={(text, record) => renderColumn(text, record, "stopYear")}
+                    title="Рік закінчення або вибуття" />
+                <Column 
+                    dataIndex="lastCourse" 
+                    key="lastCourse" 
+                    editable={true}
+                    render={(text, record) => renderColumn(text, record, "lastCourse")}
+                    title="Якщо не закінчена, то з якого курсу вибув" />
+                <Column 
+                    dataIndex="specialty" 
+                    key="specialty" 
+                    editable={true}
+                    render={(text, record) => renderColumn(text, record, "specialty")}
+                    title="Яку спеціальність здобув у результаті закінчення навчального закладу, вказати номер диплому або свідоцтва" />
+                <Column
+                    title="Дії"
+                    dataIndex="operation"
+                    key="operation"
+                    editable={false}
+                    width={80}
+                    render={(text, rows) => {
+
+                        // console.info("Column render record", rows);
+
+                        return educationTableData.editing && this.isEditing(rows) ? (
+                            <span>
+                                <Icon
+                                    type="check-circle"
+                                    theme="twoTone"
+                                    onClick={() => this.saveRow(this.props.form, rows.key)}
+                                    twoToneColor="#a0d911"
+                                />
+                                <Divider type="vertical" />
+                                <Icon
+                                    type="close-circle"
+                                    theme="twoTone"
+                                    twoToneColor="#fa541c"
+                                    onClick={() => uiActions.cancelRow(rows.key, "education")}
+                                />
+                            </span>
+                        ) : (
                                 <span>
                                     <Icon
                                         type="edit"
                                         theme="twoTone"
                                         disabled={educationTableData.editingKey !== ""}
-                                        onClick={() => uiActions.editRow(record.key, "education")}
+                                        onClick={() => uiActions.editRow(rows.key, "education")}
                                     />
                                     <Divider type="vertical" />
                                     <Icon
@@ -162,29 +145,19 @@ class EducationTable extends Component {
                                         theme="twoTone"
                                         twoToneColor="#ff1744"
                                         disabled={educationTableData.editingKey !== ""}
-                                        onClick={() => uiActions.deleteRow(record.key, "education")}
+                                        onClick={() => uiActions.deleteRow(rows.key, "education")}
                                     />
                                 </span>
                             )
-                        }}
-                    />
+                    }}
+                />
 
-                </Table>
-                <p className="add-row">
-                    <Icon 
-                        type="plus-circle" 
-                        theme="twoTone" 
-                        onClick={ this.addRow }
-                        style={{ marginBottom: 25, marginTop: 15, fontSize: 28 }}
-                    />
-                    <span>Додати рядок</span>
-                </p>
-            </div>
+            </Table>
         )
     }
 };
 
-const EditableFormTable = Form.create()(EducationTable);
+const EducationTable = Form.create()(EducationFormTable);
 
 function mapDispatchToProps(dispatch) {
     return {
@@ -198,4 +171,4 @@ function mapStateToProps(state) {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditableFormTable);
+export default connect(mapStateToProps, mapDispatchToProps)(EducationTable);

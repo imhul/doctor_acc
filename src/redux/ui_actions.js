@@ -37,6 +37,15 @@ export function dateUpdate(payload, mode, id) {
   }
 };
 
+export function tableUpdate(payload) {
+  return (dispatch) => {
+    dispatch({
+      type: type.USER_TABLE_UPDATE,
+      payload: payload.target,
+    })
+  }
+};
+
 export function formUpdate(payload) {
   return (dispatch) => {
     dispatch({

@@ -26,12 +26,16 @@
         font-size: 36px;
         color: #1890ff;
     }
-    .add-row {
-        display: inline-block;
-        margin-bottom: 0;
-        span {
-            vertical-align: super;
-            margin-left: 10px;
+    .ant-table-footer {
+        text-align: right;
+        .add-row {
+            display: inline-block;
+            margin-bottom: 0;
+            span {
+                vertical-align: super;
+                margin-right: 10px;
+            }
         }
     }
+    
 }

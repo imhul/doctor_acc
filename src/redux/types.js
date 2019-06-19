@@ -1,6 +1,6 @@
 export const typesUI = {
 
-    // Async
+    // Async:
 
     // User form
 
@@ -9,11 +9,15 @@ export const typesUI = {
     USER_FORM_LOAD_DATA:    'USER_FORM_LOAD_DATA',
     USER_FORM_SUBMIT:       'USER_FORM_SUBMIT',
 
-    // Sync
+    // Sync:
 
     // Form
 
     USER_FORM_UPDATE:       'FORM_UPDATE',
+
+    // Table
+
+    USER_TABLE_UPDATE:      'USER_TABLE_UPDATE',
 
     // Inputs
 
