@@ -50,3 +50,15 @@
     }
     
 }
+
+// Login-Pass change card
+
+.ant-drawer {
+    .hidden-inputs {
+        display: none;
+        &.show {
+            display: block; 
+        }
+    }
+}
+
