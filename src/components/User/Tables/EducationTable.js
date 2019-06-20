@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
-import { Table, Input, Icon, Divider, Form } from 'antd';
+import { Table, Input, Icon, Divider, Form, Tooltip } from 'antd';
 
 const { Column } = Table;
 const FormItem = Form.Item;
@@ -104,29 +104,36 @@ class EducationFormTable extends Component {
                     render={(unusable, rows) => {
                         return educationTableData.editing && this.isEditing(rows) ? (
                             <span>
-                                <Icon
-                                    type="check-circle"
-                                    theme="twoTone"
-                                    onClick={() => uiActions.saveRow(rows.key, "education")}
-                                    twoToneColor="#a0d911"
-                                />
+                                <Tooltip title="Зберегти">
+                                    <Icon
+                                        type="check-circle"
+                                        theme="twoTone"
+                                        onClick={() => uiActions.saveRow(rows.key, "education")}
+                                        twoToneColor="#a0d911"
+                                    />
+                                </Tooltip>
                                 <Divider type="vertical" />
+                                <Tooltip title="Скасувати">
                                 <Icon
                                     type="close-circle"
                                     theme="twoTone"
                                     twoToneColor="#fa541c"
                                     onClick={() => uiActions.cancelRow(rows.key, "education")}
                                 />
+                                </Tooltip>
                             </span>
                         ) : (
                             <span>
+                                <Tooltip title="Редагувати">
                                 <Icon
                                     type="edit"
                                     theme="twoTone"
                                     disabled={educationTableData.editingKey !== ""}
                                     onClick={() => uiActions.editRow(rows.key, "education")}
                                 />
+                                </Tooltip>
                                 <Divider type="vertical" />
+                                <Tooltip title="Видалити">
                                 <Icon
                                     type="delete"
                                     theme="twoTone"
@@ -134,6 +141,7 @@ class EducationFormTable extends Component {
                                     disabled={educationTableData.editingKey !== ""}
                                     onClick={() => uiActions.deleteRow(rows.key, "education")}
                                 />
+                                </Tooltip>
                             </span>
                         )
                     }}

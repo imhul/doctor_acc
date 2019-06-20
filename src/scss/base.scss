@@ -102,3 +102,10 @@ body {
         }
     }
 }
+
+.hidden-inputs {
+    display: none;
+    &.show {
+        display: block; 
+    }
+}

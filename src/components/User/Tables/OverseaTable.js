@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
-import { Table, Input, Icon, Divider, Form } from 'antd';
+import { Table, Input, Icon, Divider, Form, Tooltip } from 'antd';
 
 const { Column, ColumnGroup } = Table;
 const FormItem = Form.Item;
@@ -92,29 +92,36 @@ class OverseaFormTable extends Component {
                     render={(unusable, rows) => {
                         return overseaTableData.editing && this.isEditing(rows) ? (
                             <span>
-                                <Icon
-                                    type="check-circle"
-                                    theme="twoTone"
-                                    onClick={() => uiActions.saveRow(rows.key, "oversea")}
-                                    twoToneColor="#a0d911"
-                                />
+                                <Tooltip title="Зберегти">
+                                    <Icon
+                                        type="check-circle"
+                                        theme="twoTone"
+                                        onClick={() => uiActions.saveRow(rows.key, "oversea")}
+                                        twoToneColor="#a0d911"
+                                    />
+                                </Tooltip>
                                 <Divider type="vertical" />
+                                <Tooltip title="Скасувати">
                                 <Icon
                                     type="close-circle"
                                     theme="twoTone"
                                     twoToneColor="#fa541c"
                                     onClick={() => uiActions.cancelRow(rows.key, "oversea")}
                                 />
+                                </Tooltip>
                             </span>
                         ) : (
                             <span>
+                                <Tooltip title="Редагувати">
                                 <Icon
                                     type="edit"
                                     theme="twoTone"
                                     disabled={overseaTableData.editingKey !== ""}
                                     onClick={() => uiActions.editRow(rows.key, "oversea")}
                                 />
+                                </Tooltip>
                                 <Divider type="vertical" />
+                                <Tooltip title="Видалити">
                                 <Icon
                                     type="delete"
                                     theme="twoTone"
@@ -122,6 +129,7 @@ class OverseaFormTable extends Component {
                                     disabled={overseaTableData.editingKey !== ""}
                                     onClick={() => uiActions.deleteRow(rows.key, "oversea")}
                                 />
+                                </Tooltip>
                             </span>
                         )
                     }}

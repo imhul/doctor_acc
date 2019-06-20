@@ -42,5 +42,11 @@
             }
         }
     }
+    .bottom-buttons {
+        .ant-form-item-children {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
     
 }

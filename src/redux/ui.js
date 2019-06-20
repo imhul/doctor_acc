@@ -8,6 +8,8 @@ const initState = {
     isDataLoaded: false,
     isSubmitted: false,
     isFormActivated: false,
+    showPassCard: false,
+    showOldPass: false,
 
     formData: testData.inputs, // [],
     userData: testData.doctor, // [],
@@ -41,6 +43,12 @@ export default (state = initState, action) => {
                 isDataLoaded: false,
             };
 
+        case type.USER_FORM_SUBMIT:
+            return {
+                ...state,
+                isSubmitted: true,
+            };
+
         case type.USER_FORM_SUBMIT_ERROR:
             return {
                 ...state,
@@ -55,32 +63,6 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 isFormActivated: true,
-            };
-
-        case type.NUMBER_UPDATE:
-            state.formData.filter(items => items.Id === action.meta).map(item => {
-                item.Value = action.payload;
-                item.Checked = !action.payload.checked
-            });
-            return {
-                ...state,
-                isFormActivated: true,
-            };
-
-        case type.SWITCH_UPDATE:
-            state.formData.filter(items => items.Id === action.meta).map(item => {
-                item.Value = action.payload;
-                item.Checked = action.payload
-            });
-            return {
-                ...state,
-                isFormActivated: true,
-            };
-
-        case type.USER_FORM_SUBMIT:
-            return {
-                ...state,
-                isSubmitted: true,
             };
 
         case type.USER_FORM_UPDATE:
@@ -179,6 +161,18 @@ export default (state = initState, action) => {
                 });
             return {
                 ...state,
+            };
+
+        case type.PASS_CARD_TRIGGER:
+            return {
+                ...state,
+                showPassCard: !state.showPassCard,
+            };
+
+        case type.OLD_PASS_TRIGGER:
+            return {
+                ...state,
+                showOldPass: !state.showOldPass,
             };
 
         default:

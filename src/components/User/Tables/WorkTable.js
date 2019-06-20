@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
-import { Table, Input, Icon, Divider, Form } from 'antd';
+import { Table, Input, Icon, Divider, Form, Tooltip } from 'antd';
 
 const { Column, ColumnGroup } = Table;
 const FormItem = Form.Item;
@@ -69,7 +69,7 @@ class WorkFormTable extends Component {
                         key="stopDate" 
                         editable={true}
                         render={(text, record) => renderColumn(text, record, "stopDate")}
-                        title="Звільнення" />
+                        title="звільнення" />
                 </ColumnGroup>
                 <Column 
                     dataIndex="post" 
@@ -92,29 +92,36 @@ class WorkFormTable extends Component {
                     render={(unusable, rows) => {
                         return workTableData.editing && this.isEditing(rows) ? (
                             <span>
-                                <Icon
-                                    type="check-circle"
-                                    theme="twoTone"
-                                    onClick={() => uiActions.saveRow(rows.key, "work")}
-                                    twoToneColor="#a0d911"
-                                />
+                                <Tooltip title="Зберегти">
+                                    <Icon
+                                        type="check-circle"
+                                        theme="twoTone"
+                                        onClick={() => uiActions.saveRow(rows.key, "work")}
+                                        twoToneColor="#a0d911"
+                                    />
+                                </Tooltip>
                                 <Divider type="vertical" />
+                                <Tooltip title="Скасувати">
                                 <Icon
                                     type="close-circle"
                                     theme="twoTone"
                                     twoToneColor="#fa541c"
                                     onClick={() => uiActions.cancelRow(rows.key, "work")}
                                 />
+                                </Tooltip>
                             </span>
                         ) : (
                             <span>
+                                <Tooltip title="Редагувати">
                                 <Icon
                                     type="edit"
                                     theme="twoTone"
                                     disabled={workTableData.editingKey !== ""}
                                     onClick={() => uiActions.editRow(rows.key, "work")}
                                 />
+                                </Tooltip>
                                 <Divider type="vertical" />
+                                <Tooltip title="Видалити">
                                 <Icon
                                     type="delete"
                                     theme="twoTone"
@@ -122,6 +129,7 @@ class WorkFormTable extends Component {
                                     disabled={workTableData.editingKey !== ""}
                                     onClick={() => uiActions.deleteRow(rows.key, "work")}
                                 />
+                                </Tooltip>
                             </span>
                         )
                     }}

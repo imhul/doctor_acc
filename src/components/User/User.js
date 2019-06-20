@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../redux/ui_actions';
-import { Form, Button, Alert, Switch, Row, Col, Table, Input, Icon, message, Divider, } from 'antd';
+import { Form, Button, Alert, Icon, message, Divider, } from 'antd';
 import { Wave } from 'react-preloading-component';
 
 // Components
@@ -10,6 +10,7 @@ import EducationTable from './Tables/EducationTable';
 import WorkTable from './Tables/WorkTable';
 import OverseaTable from './Tables/OverseaTable';
 import Avatar from './Avatar';
+import PassCard from './PassCard';
 
 // Helpers
 import { 
@@ -126,6 +127,7 @@ class User extends Component {
                                     <Icon type="user-add" className="form-icon" /> Особистий кабінет лікаря
                                 </h1>
                                 <h2>{ userData.name }</h2>
+                                <PassCard />
                             </span>
                             <div className="img-wrapper">
                                 {
@@ -174,7 +176,18 @@ class User extends Component {
 
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 
-                        <FormItem>
+                        <FormItem className="bottom-buttons">
+                            <Button
+                                ghost 
+                                block 
+                                type="danger"  
+                                onClick={ uiActions.togglePassChanger }
+                            >
+                                Змінити логін або пароль
+                            </Button>
+
+                            <Divider type="vertical" />
+
                             <Button disabled={!isFormActivated} type="primary" htmlType="submit">
                                 Зберегти <Icon theme="filled" type="save" />
                             </Button>

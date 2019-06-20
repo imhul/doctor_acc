@@ -134,3 +134,28 @@ export function addRow(payload, id) {
     })
   }
 };
+
+export function togglePassChanger() {
+  return (dispatch) => {
+    dispatch({
+      type: type.PASS_CARD_TRIGGER,
+    })
+  }
+};
+
+export function saveUserAccess(payload) {
+  return (dispatch) => {
+    dispatch({
+      type: type.SAVE_USER_ACCESS,
+      payload: payload,
+    })
+  }
+};
+
+export function toggleOldPassConfirm() {
+  return (dispatch) => {
+    dispatch({
+      type: type.OLD_PASS_TRIGGER,
+    })
+  }
+};

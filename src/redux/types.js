@@ -12,7 +12,9 @@ export const typesUI = {
     // Sync:
 
     // Form
-
+    PASS_CARD_TRIGGER:      'PASS_CARD_TRIGGER',
+    OLD_PASS_TRIGGER:       'OLD_PASS_TRIGGER',
+    SAVE_USER_ACCESS:       'SAVE_USER_ACCESS',
     USER_FORM_UPDATE:       'FORM_UPDATE',
 
     // Table
