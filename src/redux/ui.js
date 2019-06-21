@@ -8,12 +8,17 @@ const initState = {
     isDataLoaded: false,
     isSubmitted: false,
     isFormActivated: false,
-    showPassCard: false,
-    showOldPass: false,
+
+    showUserAccessCard: false,
+    isNewPassActive: false,
+    isLoginActive: false,
+    isCurrentPassActive: false,
+    isUserAccessFormSubmitted: false,
 
     formData: testData.inputs, // [],
     userData: testData.doctor, // [],
     tableData: testData.tables, // [],
+
     educationTableData: testData.tables.filter(table => table.name === "education")[0], // [],
     workTableData: testData.tables.filter(table => table.name === "work")[0], // [],
     overseaTableData: testData.tables.filter(table => table.name === "oversea")[0], // [],
@@ -163,16 +168,43 @@ export default (state = initState, action) => {
                 ...state,
             };
 
-        case type.PASS_CARD_TRIGGER:
+        // User access form
+
+        case type.USER_ACCESS_FORM_TRIGGER:
             return {
                 ...state,
-                showPassCard: !state.showPassCard,
+                showUserAccessCard: !state.showUserAccessCard,
             };
 
-        case type.OLD_PASS_TRIGGER:
+        case type.USER_ACCESS_FORM_SUBMIT:
             return {
                 ...state,
-                showOldPass: !state.showOldPass,
+                isUserAccessFormSubmitted: true,
+                showUserAccessCard: false,
+            };
+
+        case type.USER_ACCESS_FORM_UPDATE:
+            // TODO:
+            return {
+                ...state,
+            };
+
+        case type.NEW_PASS_INPUT_TRIGGER:
+            return {
+                ...state,
+                isNewPassActive: true,
+            };
+
+        case type.CURRENT_PASS_TRIGGER:
+            return {
+                ...state,
+                isCurrentPassActive: true,
+            };
+
+        case type.CURRENT_LOGIN_TRIGGER:
+            return {
+                ...state,
+                isLoginActive: true,
             };
 
         default:

@@ -60,5 +60,15 @@
             display: block; 
         }
     }
+    .user-form-submit-button {
+        position: absolute;
+        bottom: -97px;
+        height: 49px;
+        left: -25px;
+        width: 150px;
+        background: rgba(0,0,0,0);
+        border: 0;
+        z-index: 1001;
+    }
 }
 

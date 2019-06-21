@@ -63,11 +63,6 @@ class User extends Component {
         // this.loadAllData();  // First data loading
     };
 
-    onFormSubmit(e) {
-        e.preventDefault();
-        this.formSubmit(this.props.ui.formData)
-    };
-
     formSubmit(newData) {
         const { uiActions, ui } = this.props;
         const options = {
@@ -98,6 +93,12 @@ class User extends Component {
             }
         })
         .catch(error => message.error(error))
+    };
+
+    onFormSubmit(e) {
+        e.preventDefault();
+        this.formSubmit(this.props.ui.formData);
+        console.info("onFormSubmit this: ", this)
     };
 
     render() {
@@ -181,7 +182,7 @@ class User extends Component {
                                 ghost 
                                 block 
                                 type="danger"  
-                                onClick={ uiActions.togglePassChanger }
+                                onClick={ uiActions.userAccessFormToggle }
                             >
                                 Змінити логін або пароль
                             </Button>

@@ -55,26 +55,6 @@ export function formUpdate(payload) {
   }
 };
 
-export function numberUpdate(payload, id) {
-  return (dispatch) => {
-    dispatch({
-      type: type.NUMBER_UPDATE,
-      payload: payload,
-      meta: id,
-    })
-  }
-};
-
-export function switchUpdate(checked, id) {
-  return (dispatch) => {
-    dispatch({
-      type: type.SWITCH_UPDATE,
-      payload: checked,
-      meta: id,
-    })
-  }
-};
-
 export function formSubmit() {
   return (dispatch) => {
     dispatch({
@@ -135,27 +115,53 @@ export function addRow(payload, id) {
   }
 };
 
-export function togglePassChanger() {
+// User access
+
+export function userAccessFormToggle() {
   return (dispatch) => {
     dispatch({
-      type: type.PASS_CARD_TRIGGER,
+      type: type.USER_ACCESS_FORM_TRIGGER,
     })
   }
 };
 
-export function saveUserAccess(payload) {
+export function saveUserAccessForm() {
   return (dispatch) => {
     dispatch({
-      type: type.SAVE_USER_ACCESS,
-      payload: payload,
+      type: type.USER_ACCESS_FORM_SUBMIT,
     })
   }
 };
 
-export function toggleOldPassConfirm() {
+export function userAccessFormUpdate(payload) {
   return (dispatch) => {
     dispatch({
-      type: type.OLD_PASS_TRIGGER,
+      type: type.USER_ACCESS_FORM_UPDATE,
+      payload: payload.target,
+    })
+  }
+};
+
+export function toggleNewPassConfirm() {
+  return (dispatch) => {
+    dispatch({
+      type: type.NEW_PASS_INPUT_TRIGGER,
+    })
+  }
+};
+
+export function toggleCurrentPassConfirm() {
+  return (dispatch) => {
+    dispatch({
+      type: type.CURRENT_PASS_TRIGGER,
+    })
+  }
+};
+
+export function toggleCurrentLoginConfirm() {
+  return (dispatch) => {
+    dispatch({
+      type: type.CURRENT_LOGIN_TRIGGER,
     })
   }
 };

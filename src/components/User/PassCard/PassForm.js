@@ -2,53 +2,62 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as UI_ACTIONS from '../../../redux/ui_actions';
-import { Form, Icon, Input, } from 'antd';
+import { Form, Icon, Input, Button, } from 'antd';
 
 const { Password } = Input;
+const FormItem = Form.Item;
 
 class ChangePassLOginForm extends Component {
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        this.props.uiActions.saveUserAccessForm(values)
       }
-    });
+    })
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { showOldPass } = this.props.ui;
+    const { isNewPassActive, isCurrentPassActive, isLoginActive } = this.props.ui;
     const { uiActions } = this.props;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
+      <Form 
+        id="user-access-form"
+        onSubmit={this.handleSubmit} 
+        onChange={uiActions.userAccessFormUpdate} 
+        className="login-form"
+      >
+        <FormItem>
           {getFieldDecorator('username', {
             rules: [{ required: false }],
           })(
             <Input
               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Логін"
+              onClick={uiActions.toggleCurrentLoginConfirm}
             />,
           )}
-        </Form.Item>
-        <Form.Item>
+        </FormItem>
+        <FormItem>
           {getFieldDecorator('newPassword', {
-            rules: [{ required: true, message: 'Будь ласка, введіть ваш пароль!' }],
+            rules: [{ required: false }],
           })(
             <Password
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               visibilityToggle={true}
               placeholder="Пароль"
-              onClick={uiActions.toggleOldPassConfirm}
+              onClick={uiActions.toggleNewPassConfirm}
             />,
           )}
-        </Form.Item>
-        {/* old */}
-        <div className={`hidden-inputs ${ showOldPass ? "show" : null }`}>
-          <Form.Item>
-            {getFieldDecorator('oldPassword1', {
+        </FormItem>
+        {/* old pass */}
+        <div className={`hidden-inputs ${ isNewPassActive ? "show" : null }`}>
+          <FormItem>
+            {getFieldDecorator('currentPassword', {
               rules: [{ required: true, message: 'Будь ласка, введіть ваш пароль!' }],
             })(
               <Password
@@ -56,22 +65,15 @@ class ChangePassLOginForm extends Component {
                 type="password"
                 visibilityToggle={true}
                 placeholder="Поточний пароль"
+                onClick={uiActions.toggleCurrentPassConfirm}
               />,
             )}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('oldPassword2', {
-              rules: [{ required: true, message: 'Будь ласка, введіть ваш пароль!' }],
-            })(
-              <Password
-                prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                type="password"
-                visibilityToggle={true}
-                placeholder="Поточний пароль"
-              />,
-            )}
-          </Form.Item>
+          </FormItem>
+          
         </div>
+        <FormItem>
+          <Button htmlType="submit" className="user-form-submit-button" />
+        </FormItem>
       </Form>
     );
   }

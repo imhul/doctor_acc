@@ -10,14 +10,14 @@ import PassForm from './PassForm';
 class PassCard extends Component {
 
     render() {
-        const { showPassCard } = this.props.ui;
+        const { showUserAccessCard } = this.props.ui;
         const { uiActions } = this.props;
         return (
             <Drawer
                 title="Змінити логін або пароль"
                 width={348}
-                onClose={ uiActions.togglePassChanger }
-                visible={ showPassCard }
+                onClose={ uiActions.userAccessFormToggle }
+                visible={ showUserAccessCard }
             >
                 <Card
                     style={{ width: 300 }}
@@ -27,7 +27,6 @@ class PassCard extends Component {
                                 <Icon
                                     type="check-circle"
                                     theme="twoTone"
-                                    onClick={ uiActions.saveUserAccess }
                                     twoToneColor="#a0d911"
                                 />
                             </Tooltip>,
@@ -36,7 +35,7 @@ class PassCard extends Component {
                                     type="close-circle"
                                     theme="twoTone"
                                     twoToneColor="#fa541c"
-                                    onClick={ uiActions.togglePassChanger }
+                                    onClick={ uiActions.userAccessFormToggle }
                                 />
                             </Tooltip>,
                             
