@@ -2,8 +2,8 @@ const testData = {
     "doctor": {
         "name": "Ожоженко Галина Василівна",
         "avatar": "",
-        "token": "",
-        "isAuthorized": true
+        "login": "galyna",
+        "pass": '5f4dcc3b5aa765d61d8327deb882cf99'
     },
     "inputs": [
         {

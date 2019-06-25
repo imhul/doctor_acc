@@ -13,12 +13,12 @@ import Avatar from './Avatar';
 import PassCard from './PassCard';
 
 // Helpers
-import { 
+import {
     requestURL,
     requestBody,
     typeDetector,
     requestHeader,
-    
+
 } from '../../helpers';
 
 const FormItem = Form.Item;
@@ -44,17 +44,17 @@ class User extends Component {
             headers: requestHeader,
             body: requestBody(data)
         })
-        .then(response => {
-            if(response.ok && (response.status === 200)) {
-                message.success(successLoadText);
-                return response.json()
-            } else {
-                message.error(errorLoadText);
-                uiActions.loadError()
-            }
-        })
-        .then(data => uiActions.loadData(data))
-        .catch(error => message.error(error))
+            .then(response => {
+                if (response.ok && (response.status === 200)) {
+                    message.success(successLoadText);
+                    return response.json()
+                } else {
+                    message.error(errorLoadText);
+                    uiActions.loadError()
+                }
+            })
+            .then(data => uiActions.loadData(data))
+            .catch(error => message.error(error))
     };
 
     componentDidMount() {
@@ -73,26 +73,26 @@ class User extends Component {
             'Department': document.getElementById("Department").value,
         };
         const request = {
-            'Options' : options,
-            'Data' : newData,
+            'Options': options,
+            'Data': newData,
         };
 
         fetch('https://med.uax.co/api/?Method=SaveOptions', {
-            method: 'post',  
+            method: 'post',
             headers: requestHeader,
-            body: 'Request='+JSON.stringify(request)
+            body: 'Request=' + JSON.stringify(request)
         })
-        .then(response => { 
-            if(response.ok && (response.status === 200)) {
-                uiActions.formSubmit();
-                message.success(successSaveText);
-                return response.json()
-            } else {
-                message.error(errorSaveText);
-                uiActions.submitError(response.status)
-            }
-        })
-        .catch(error => message.error(error))
+            .then(response => {
+                if (response.ok && (response.status === 200)) {
+                    uiActions.formSubmit();
+                    message.success(successSaveText);
+                    return response.json()
+                } else {
+                    message.error(errorSaveText);
+                    uiActions.submitError(response.status)
+                }
+            })
+            .catch(error => message.error(error))
     };
 
     onFormSubmit(e) {
@@ -102,40 +102,48 @@ class User extends Component {
     };
 
     render() {
-        const { 
+        const {
             isInit,
-            isDataLoaded, 
-            isSubmitted, 
-            isFormActivated, 
-            formData, 
-            userData, 
-            tableData, 
+            isDataLoaded,
+            isSubmitted,
+            isFormActivated,
+            formData,
+            userData,
+            tableData,
         } = this.props.ui;
-        
+
         const { uiActions } = this.props;
 
         return (
             <div className="flex-container" style={isInit === false ? { height: '100%' } : { height: 'auto' }}>
-                { isInit === false ? <Wave color="#1890ff" /> : ( // preloader
-                    <Form 
-                        className="doctor-form" 
-                        onSubmit={ this.onFormSubmit } 
-                        onChange={ uiActions.formUpdate }
-                    >   
+                {isInit === false ? <Wave color="#1890ff" /> : ( // preloader
+                    <Form
+                        className="doctor-form"
+                        onSubmit={this.onFormSubmit}
+                        onChange={uiActions.formUpdate}
+                    >
                         <header>
                             <span>
                                 <h1>
                                     <Icon type="user-add" className="form-icon" /> Особистий кабінет лікаря
                                 </h1>
-                                <h2>{ userData.name }</h2>
+                                <h2>{userData.name}</h2>
+                                <h3>{`Логін: ${userData.login}`}</h3>
+                                <Button
+                                    ghost
+                                    type="danger"
+                                    onClick={uiActions.userAccessFormToggle}
+                                >
+                                    Змінити логін або пароль
+                            </Button>
                                 <PassCard />
                             </span>
                             <div className="img-wrapper">
                                 {
-                                    userData.avatar ? <img 
-                                        src={userData.avatar} 
-                                        alt={userData.name} 
-                                        className="avatar" 
+                                    userData.avatar ? <img
+                                        src={userData.avatar}
+                                        alt={userData.name}
+                                        className="avatar"
                                     /> : <Avatar />
                                 }
                             </div>
@@ -146,57 +154,46 @@ class User extends Component {
                         <Divider />
 
                         <h2>Робота</h2>
-                        <Alert 
-                            showIcon={ true }
+                        <Alert
+                            showIcon={true}
                             type="info"
-                            message="Виконувана робота з початку трудової діяльності (включаючи навчання у вищих і середніх навчальних закладах, військову службу участь в партизанських загонах і роботу за сумісництвом). При заповненні цього пункту установи, організації і підприємства необхідно іменувати так, як вони називалися у свій час, військову службу записувати з зазначенням посади." 
+                            message="Виконувана робота з початку трудової діяльності (включаючи навчання у вищих і середніх навчальних закладах, військову службу участь в партизанських загонах і роботу за сумісництвом). При заповненні цього пункту установи, організації і підприємства необхідно іменувати так, як вони називалися у свій час, військову службу записувати з зазначенням посади."
                         />
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
                         <WorkTable />
                         <Divider />
 
                         <h2>Закордонний досвід</h2>
-                        <Alert 
-                            showIcon={ true }
+                        <Alert
+                            showIcon={true}
                             type="info"
-                            message="Перебування за кордоном (робота, службове відрядження тощо)." 
+                            message="Перебування за кордоном (робота, службове відрядження тощо)."
                         />
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
                         <OverseaTable />
                         <Divider />
 
-                        <Alert 
-                            showIcon={ true }
+                        <Alert
+                            showIcon={true}
                             type="info"
-                            message="Працівник, який заповнює особовий листок, повинен про всі наступні зміни повідомляти за місцем роботи для внесення відповідних даних у його особову картку." 
+                            message="Працівник, який заповнює особовий листок, повинен про всі наступні зміни повідомляти за місцем роботи для внесення відповідних даних у його особову картку."
                         />
 
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 
-                        { formData.map(inputs => typeDetector(inputs)) }
+                        {formData.map(inputs => typeDetector(inputs))}
 
                         <Divider style={{ visibility: "hidden", margin: "10px 0" }} />
 
                         <FormItem className="bottom-buttons">
-                            <Button
-                                ghost 
-                                block 
-                                type="danger"  
-                                onClick={ uiActions.userAccessFormToggle }
-                            >
-                                Змінити логін або пароль
-                            </Button>
-
-                            <Divider type="vertical" />
-
                             <Button disabled={!isFormActivated} type="primary" htmlType="submit">
                                 Зберегти <Icon theme="filled" type="save" />
                             </Button>
                         </FormItem>
 
                     </Form>
-                ) }
-                
+                )}
+
             </div>
         )
     }

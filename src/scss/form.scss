@@ -9,6 +9,9 @@
     header {
         display: flex;
         justify-content: space-between;
+        h3 {
+            margin-bottom: 25px;
+        }
     }
     .ant-form-item-label {
         line-height: 1.4;

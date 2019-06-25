@@ -11,18 +11,22 @@ class ChangePassLOginForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    const { form, ui, uiActions } = this.props;
+    form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        this.props.uiActions.saveUserAccessForm(values)
+        uiActions.userAccessFormSave(values)
       }
     })
   };
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { isNewPassActive, isCurrentPassActive, isLoginActive } = this.props.ui;
+    const { userData, isNewPassActive, isCurrentPassActive, isLoginActive } = this.props.ui;
     const { uiActions } = this.props;
+    const isPassMatched = ( currentPass, newPass ) => {
+      return currentPass === md5(newPass)
+    }; 
     return (
       <Form 
         id="user-access-form"
@@ -42,8 +46,8 @@ class ChangePassLOginForm extends Component {
           )}
         </FormItem>
         <FormItem>
-          {getFieldDecorator('newPassword', {
-            rules: [{ required: false }],
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: 'Будь ласка, введіть ваш пароль!' }],
           })(
             <Password
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -58,7 +62,7 @@ class ChangePassLOginForm extends Component {
         <div className={`hidden-inputs ${ isNewPassActive ? "show" : null }`}>
           <FormItem>
             {getFieldDecorator('currentPassword', {
-              rules: [{ required: true, message: 'Будь ласка, введіть ваш пароль!' }],
+              rules: [{ required: false }],
             })(
               <Password
                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}

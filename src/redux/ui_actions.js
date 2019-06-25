@@ -125,7 +125,7 @@ export function userAccessFormToggle() {
   }
 };
 
-export function saveUserAccessForm() {
+export function userAccessFormSave() {
   return (dispatch) => {
     dispatch({
       type: type.USER_ACCESS_FORM_SUBMIT,
